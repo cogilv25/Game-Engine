@@ -1,0 +1,3 @@
+[submodule "Negligent-Precision/vendor/GLFW"]
+	path = Negligent-Precision/vendor/GLFW
+	url = https://github.com/cogilv25/glfw
