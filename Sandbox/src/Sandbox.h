@@ -6,4 +6,5 @@ public:
 	void update();
 	void draw();
 	void initialise();
+	void shutdown();
 };

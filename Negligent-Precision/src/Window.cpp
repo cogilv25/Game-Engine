@@ -1,5 +1,5 @@
+#include "nppch.h"
 #include "Window.h"
-#include <iostream>
 
 
 namespace np

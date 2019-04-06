@@ -14,7 +14,6 @@ namespace np
 		virtual void update() = 0;
 		virtual void draw() = 0;
 		virtual void initialise() = 0;
+		virtual void shutdown() = 0;
 	};
-
-
 }

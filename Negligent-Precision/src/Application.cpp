@@ -1,5 +1,5 @@
+#include "nppch.h"
 #include "Application.h"
-#include <iostream>
 
 namespace np
 {
@@ -15,7 +15,9 @@ namespace np
 
 	void Application::run()
 	{
+		initialise();
 		std::cin.get();
+		shutdown();
 	}
 
 }

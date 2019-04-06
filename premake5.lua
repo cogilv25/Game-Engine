@@ -24,7 +24,8 @@ project "Negligent-Precision"
 	objdir("bin-int/" .. outputdir .. "/%{prj.name}")
 
 
-	--TODO: precompiled headers
+	pchheader "nppch.h"
+	pchsource "%{prj.name}/src/nppch.cpp"
 
 	files
 	{
