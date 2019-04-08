@@ -14,6 +14,7 @@ workspace "Negligent-Precision"
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 include "Negligent-Precision/vendor/GLFW"
+include "Negligent-Precision/vendor/Glad"
 
 project "Negligent-Precision"
 	location "Negligent-Precision"
@@ -36,13 +37,20 @@ project "Negligent-Precision"
 	includedirs	
 	{
 		"%{prj.name}/vendor/include",
-		"%{prj.name}/vendor/GLFW/include"
+		"%{prj.name}/vendor/GLFW/include",
+		"%{prj.name}/vendor/Glad/include"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
+	}
+
+	defines
+	{
+		"GLFW_INCLUDE_NONE"
 	}
 
 	filter "system:windows"
