@@ -4,3 +4,6 @@
 [submodule "Negligent-Precision/vendor/imgui"]
 	path = Negligent-Precision/vendor/imgui
 	url = https://github.com/cogilv25/imgui
+[submodule "Negligent-Precision/vendor/glm"]
+	path = Negligent-Precision/vendor/glm
+	url = https://github.com/g-truc/glm

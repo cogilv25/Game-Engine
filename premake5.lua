@@ -40,7 +40,8 @@ project "Negligent-Precision"
 		"%{prj.name}/vendor/include",
 		"%{prj.name}/vendor/GLFW/include",
 		"%{prj.name}/vendor/Glad/include",
-		"%{prj.name}/vendor/imgui"
+		"%{prj.name}/vendor/imgui",
+		"%{prj.name}/vendor/glm"
 	}
 
 	links
@@ -103,7 +104,8 @@ project "Sandbox"
 	includedirs
 	{
 		"%{prj.name}/vendor/include",
-		"Negligent-Precision/src"
+		"Negligent-Precision/src",
+		"Negligent-Precision/vendor/glm"
 	}
 
 	links
