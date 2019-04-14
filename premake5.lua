@@ -15,6 +15,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 include "Negligent-Precision/vendor/GLFW"
 include "Negligent-Precision/vendor/Glad"
+include "Negligent-Precision/vendor/imgui"
 
 project "Negligent-Precision"
 	location "Negligent-Precision"
@@ -38,13 +39,15 @@ project "Negligent-Precision"
 	{
 		"%{prj.name}/vendor/include",
 		"%{prj.name}/vendor/GLFW/include",
-		"%{prj.name}/vendor/Glad/include"
+		"%{prj.name}/vendor/Glad/include",
+		"%{prj.name}/vendor/imgui"
 	}
 
 	links
 	{
 		"GLFW",
 		"Glad",
+		"ImGui",
 		"opengl32.lib"
 	}
 
