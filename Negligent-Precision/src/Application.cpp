@@ -1,12 +1,9 @@
 #include "nppch.h"
 #include "Application.h"
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
-#include "imgui.h"
-#include "glm/glm.hpp"
 
 namespace np
 {
+	
 	glm::mat4 MVP = glm::mat4(1.0f);
 	Application::Application()
 	{
@@ -19,6 +16,20 @@ namespace np
 		GLuint textureID;
 		glCreateTextures(GL_TEXTURE_2D, 1, &textureID);
 		assert(glGetError()==0);
+
+		auto L = luaL_newstate();
+		luaL_openlibs(L);
+
+		if (luaL_loadfile(L, "../bin/Debug-windows-x86_64/Sandbox/test.lua"))
+			std::cout << "Error: script not loaded (test.lua)" << std::endl;
+		else
+			if (lua_pcall(L, 0, 1, 0))
+				std::cout << "Error: " << lua_tostring(L, -1) << std::endl;
+			else
+				std::cout << lua_tostring(L, -1) << std::endl;
+		
+
+
 	}
 
 

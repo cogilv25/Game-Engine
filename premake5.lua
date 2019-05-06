@@ -16,6 +16,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 include "Negligent-Precision/vendor/GLFW"
 include "Negligent-Precision/vendor/Glad"
 include "Negligent-Precision/vendor/imgui"
+include "Negligent-Precision/vendor/lua"
 
 project "Negligent-Precision"
 	location "Negligent-Precision"
@@ -27,7 +28,7 @@ project "Negligent-Precision"
 
 
 	pchheader "nppch.h"
-	pchsource "%{prj.name}/src/nppch.cpp"
+	pchsource "Negligent-Precision/src/nppch.cpp"
 
 	files
 	{
@@ -41,7 +42,8 @@ project "Negligent-Precision"
 		"%{prj.name}/vendor/GLFW/include",
 		"%{prj.name}/vendor/Glad/include",
 		"%{prj.name}/vendor/imgui",
-		"%{prj.name}/vendor/glm"
+		"%{prj.name}/vendor/glm",
+		"%{prj.name}/vendor/lua"
 	}
 
 	links
@@ -49,6 +51,7 @@ project "Negligent-Precision"
 		"GLFW",
 		"Glad",
 		"ImGui",
+		"Lua",
 		"opengl32.lib"
 	}
 
@@ -121,4 +124,8 @@ project "Sandbox"
 		defines
 		{
 			"NP_PLATFORM_WINDOWS"
+		}
+		postbuildcommands
+		{
+			("{COPY} src/scripts/test.lua ../bin/" .. outputdir .. "/Sandbox")
 		}
