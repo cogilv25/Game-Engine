@@ -1,11 +1,13 @@
 #pragma once
 #include "Core.h"
+#include "Window.h"
 
 
 namespace np
 {
 	class NP_API Application
 	{
+
 	public:
 		void run();
 		Application();

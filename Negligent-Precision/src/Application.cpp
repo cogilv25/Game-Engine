@@ -1,5 +1,7 @@
 #include "nppch.h"
 #include "Application.h"
+#include "examples/imgui_impl_glfw.h"
+#include "examples/imgui_impl_opengl3.h"
 
 namespace np
 {
@@ -8,9 +10,9 @@ namespace np
 	Application::Application()
 	{
 		//Test
-		glfwInit();
-		auto window = glfwCreateWindow(1280, 720, "Test", 0, 0);
-		glfwMakeContextCurrent(window);
+		Window win("Test", 1280, 720);
+		win.initialize();
+		glfwMakeContextCurrent(win._glfwWindow);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		assert(status);
 		GLuint textureID;
@@ -28,7 +30,7 @@ namespace np
 			else
 				std::cout << lua_tostring(L, -1) << std::endl;
 		
-
+		std::cin.get();
 
 	}
 
