@@ -1,3 +1,8 @@
-print("printing from inside lua... yay")
+require "os"
+print("Loading Settings...")
 
-return "Lua script loaded!"
+title = "Cool game"
+width = 800
+height = 400
+
+print("Settings Loaded.")
