@@ -7,7 +7,7 @@ np::Application* np::createApplication()
 	return new Sandbox;
 }
 
-void Sandbox::initialise()
+void Sandbox::initialize()
 {
 
 }
@@ -19,7 +19,10 @@ void Sandbox::shutdown()
 
 void Sandbox::update()
 {
-
+	if (getKeyDown(NP_ESCAPE))
+	{
+		stop();
+	}
 }
 
 void Sandbox::draw()

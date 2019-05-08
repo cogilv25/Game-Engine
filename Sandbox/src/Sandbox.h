@@ -5,6 +5,6 @@ class Sandbox : public np::Application
 public:
 	void update();
 	void draw();
-	void initialise();
+	void initialize();
 	void shutdown();
 };

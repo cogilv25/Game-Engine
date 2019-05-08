@@ -65,6 +65,8 @@ project "Negligent-Precision"
 		staticruntime "On"
 		systemversion "latest"
 
+		linkoptions {"/NODEFAULTLIB:LIBCMT"}
+
 		defines
 		{
 			"NP_PLATFORM_WINDOWS",

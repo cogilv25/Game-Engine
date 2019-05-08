@@ -6,15 +6,14 @@ namespace np
 {
 	Window::Window()
 	{
-		_glfwWindow = 0;
-		_width = 800;
-		_height = 400;
-		_title = "Negligent Precision Application";
+		_windowRef = 0;
+		_width = 0;
+		_height = 0;
 	}
 
 	Window::Window(std::string title, unsigned int width, unsigned int height)
 	{
-		_glfwWindow = 0;
+		_windowRef = 0;
 		_title = title;
 		_width = width;
 		_height = height;
@@ -22,8 +21,8 @@ namespace np
 
 	Window::~Window()
 	{
-		if(_glfwWindow)
-			glfwDestroyWindow(_glfwWindow);
+		if(_windowRef)
+			glfwDestroyWindow(_windowRef);
 	}
 
 
@@ -31,6 +30,7 @@ namespace np
 	{
 		if (!glfwInit())
 			std::cout << "Error: GLFW failed to initialize" << std::endl;
-			_glfwWindow = glfwCreateWindow(_width, _height, _title.c_str(), 0, 0);
+
+			_windowRef = glfwCreateWindow(_width, _height, _title.c_str(), 0, 0);
 	}
 }
