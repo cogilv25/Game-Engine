@@ -57,7 +57,7 @@ class LuaEnv
 		return "Null";
 	}
 public:
-	void callFile(std::string filename);
+	bool callFile(std::string filename);
 	template<typename T> inline T get(std::string name)
 	{
 		if (!_state)

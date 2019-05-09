@@ -129,5 +129,5 @@ project "Sandbox"
 		}
 		postbuildcommands
 		{
-			("{COPY} src/scripts/test.lua ../bin/" .. outputdir .. "/Sandbox")
+			("{COPY} scripts ../bin/" .. outputdir .. "/Sandbox/scripts")
 		}

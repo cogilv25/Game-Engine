@@ -1,4 +1,3 @@
-require "os"
 print("Loading Settings...")
 
 title = "Cool game"

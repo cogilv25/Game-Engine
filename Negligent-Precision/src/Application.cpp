@@ -10,9 +10,6 @@ namespace np
 	glm::mat4 MVP = glm::mat4(1.0f);
 	Application::Application()
 	{
-		//Test
-		LuaEnv luaVM;
-		luaVM.callFile("../bin/Debug-windows-x86_64/Sandbox/test.lua");
 
 
 		//These should be a part of Renderer init but they have to
@@ -43,6 +40,20 @@ namespace np
 
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		assert(glGetError() == 0);
+		LuaEnv settings;
+		if (settings.callFile("scripts/settings.lua"))
+		{
+			_window->_title = settings.get<std::string>("title");
+			_window->_width = settings.get<int>("width");
+			_window->_height = settings.get<int>("height");
+		}
+		else
+		{
+			//Make things awkward :P
+			_window->_title = "No settings.lua file in scripts directory!";
+			_window->_width = 500;
+			_window->_height = 50;
+			glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
 		ImGui::CreateContext();
 		ImGui_ImplGlfw_InitForOpenGL(_window._windowRef, true);
