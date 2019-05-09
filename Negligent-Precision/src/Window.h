@@ -9,6 +9,7 @@ namespace np
 	class NP_API Window
 	{
 		friend class Application;
+		friend class Renderer;
 	private:
 		std::string _title;
 		unsigned int _width;

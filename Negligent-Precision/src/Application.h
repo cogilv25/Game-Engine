@@ -9,8 +9,8 @@ namespace np
 	class NP_API Application
 	{
 		bool _running;
-		Window _window;
-		Renderer _renderer;
+		Renderer* _renderer;
+		Window* _window;
 	protected:
 		bool getKeyDown(int key);
 		//Functions to be overridden by client app
