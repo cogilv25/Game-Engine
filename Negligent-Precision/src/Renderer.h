@@ -1,5 +1,6 @@
 #pragma once
 #include "Core.h"
+#include "ImGuiWrapper.h"
 
 namespace np
 {
@@ -23,6 +24,9 @@ namespace np
 	public:
 		//Client accessible functions
 	
+	public:
+		//Lua Functions?
+
 	};
 
 }
