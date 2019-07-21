@@ -50,6 +50,7 @@ namespace np
 		ImGui::DestroyContext();
 	}
 
+
 	void Renderer::startFrame()
 	{
 		ImGui_ImplOpenGL3_NewFrame();
@@ -59,9 +60,7 @@ namespace np
 
 	void Renderer::draw()
 	{
-		ImGui::Begin("Debug");
-		ImGui::Text("FPS: %.0f", 54.33);
-		ImGui::End();
+		
 	}
 
 	void Renderer::endFrame()

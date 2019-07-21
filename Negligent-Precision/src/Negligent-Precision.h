@@ -1,6 +1,6 @@
 #pragma once
 #include "Window.h"
 #include "Application.h"
+#include "ImGuiWrapper.h"
 #include "EntryPoint.h"
-
-#define NP_ESCAPE 256
+#include "Input.h"

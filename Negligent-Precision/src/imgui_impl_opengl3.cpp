@@ -62,6 +62,8 @@
 #define _CRT_SECURE_NO_WARNINGS
 #endif
 
+//Using GLAD, I could probably just remove everything else and then
+//this define wouldn't be required
 #define IMGUI_IMPL_OPENGL_LOADER_GLAD
 
 #include "imgui_impl_opengl3.h"

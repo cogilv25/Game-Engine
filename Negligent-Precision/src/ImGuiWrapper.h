@@ -1,5 +1,8 @@
 #pragma once
 #include "Core.h"
+//Most of this is copied from somewhere but I don't comment things
+// at the time it would seem -_-
+
 
 //Make calls to ImGuiWrapper look like normal ImGui calls to client app
 #ifndef NP_BUILD_DLL

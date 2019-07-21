@@ -1,15 +1,17 @@
 #include "nppch.h"
 #include "Application.h"
 #include "LuaEnv.h"
+#include <chrono>
 
 namespace np
 {
 	
+	Application * Application::_instance;
+
 	glm::mat4 MVP = glm::mat4(1.0f);
-	Application::Application()
+	Application::Application() 
+		:window(*new Window), renderer(*new Renderer)
 	{
-		_window = new Window();
-		_renderer = new Renderer();
 
 		if (!glfwInit())
 			std::cout << "Error: GLFW failed to initialize" << std::endl;
@@ -17,36 +19,43 @@ namespace np
 		LuaEnv settings;
 		if (settings.callFile("scripts/settings.lua"))
 		{
-			_window->_title = settings.get<std::string>("title");
-			_window->_width = settings.get<int>("width");
-			_window->_height = settings.get<int>("height");
+			window._title = settings.get<std::string>("title");
+			window._width = settings.get<int>("width");
+			window._height = settings.get<int>("height");
 		}
 		else
 		{
 			//Make things awkward :P
-			_window->_title = "No settings.lua file in scripts directory!";
-			_window->_width = 500;
-			_window->_height = 50;
+			//TODO: Maybe create the file
+			window._title = "No settings.lua file in scripts directory!";
+			window._width = 500;
+			window._height = 50;
 			glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 		}
-		_window->initialize();
+		window.initialize();
 
-		//Used to cause heap validation error - not sure why what I did fixed it... So requires investigation.
-		//Fixed by making _window and _renderer pointers and allocating at runtime? delete order doesn't matter
-		_renderer->initialize(_window);
+		//Used to cause heap validation error.
+		//Not sure why what I did fixed it so requires investigation. I fixed it
+		//by allocating window and renderer at runtime? delete order didn't matter
+		//Perhaps something todo with Renderer Constructor needing to be called first?
+		renderer.initialize(&window);
+		input.initialize(window._windowRef);
 
 		GLuint textureID;
 
 		glCreateTextures(GL_TEXTURE_2D, 1, &textureID);
 		assert(glGetError()==0);
+
+		_instance = this;
+		std::cout << std::boolalpha;
 	}
 
 
 	Application::~Application()
 	{
-		_renderer->shutdown();
-		delete _renderer;
-		delete _window;
+		renderer.shutdown();
+		delete &renderer;
+		delete &window;
 		glfwTerminate();
 	}
 
@@ -55,9 +64,16 @@ namespace np
 		initialize();
 		_running = true;
 
+		//initial value somewhere around 60fps
+		float frameTime = 0.0160f;
+
+		auto before = std::chrono::high_resolution_clock::now();
+
 		while (_running)
 		{
-			if (glfwWindowShouldClose(_window->_windowRef))
+			auto before = std::chrono::high_resolution_clock::now();
+
+			if (glfwWindowShouldClose(window._windowRef))
 				break;
 
 			glClear(GL_COLOR_BUFFER_BIT | GL_STENCIL_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -65,10 +81,21 @@ namespace np
 
 			update();
 
-			_renderer->startFrame();
+			renderer.startFrame();
 			draw();
-			_renderer->draw();
-			_renderer->endFrame();
+			if (_showDebugInfo)
+			{
+				ImGui::Begin("Debug");
+				ImGui::Text("FPS: %.0f", 1.0f/frameTime);
+				ImGui::End();
+			}
+			renderer.draw();
+			renderer.endFrame();
+
+
+			auto after = std::chrono::high_resolution_clock::now();
+			frameTime -= frameTime / 60.0f;
+			frameTime += (std::chrono::duration_cast<std::chrono::duration<float>>(after - before).count()) / 60.0f;
 		}
 
 		shutdown();
@@ -79,11 +106,7 @@ namespace np
 		_running = false;
 	}
 
-	bool Application::getKeyDown(int key)
-	{
-		if(glfwGetKey(_window->_windowRef, key) == GLFW_PRESS)
-			return true;
-		return false;
-	}
+
+	
 
 }

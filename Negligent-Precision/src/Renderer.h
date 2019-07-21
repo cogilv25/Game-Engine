@@ -1,6 +1,5 @@
 #pragma once
 #include "Core.h"
-#include "ImGuiWrapper.h"
 
 namespace np
 {
@@ -23,10 +22,6 @@ namespace np
 		void endFrame();
 	public:
 		//Client accessible functions
-	
-	public:
-		//Lua Functions?
-
 	};
 
 }

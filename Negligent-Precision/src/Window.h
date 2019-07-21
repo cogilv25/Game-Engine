@@ -3,7 +3,6 @@
 #include <string>
 
 
-struct GLFWwindow;
 namespace np
 {
 	class NP_API Window

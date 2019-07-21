@@ -21,6 +21,10 @@ extern "C"
 # include "lauxlib.h"
 # include "lualib.h"
 }
+
+//I wish I would comment things at the time... what is this! xD
+//These files are included in the project now and def is in:
+//imgui_impl_opengl3.cpp so no longer required here
 /*
 #define IMGUI_IMPL_OPENGL_LOADER_GLAD
 #include "imgui_impl_glfw.h"

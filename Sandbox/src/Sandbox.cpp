@@ -12,7 +12,7 @@ Application* np::createApplication()
 
 void Sandbox::initialize()
 {
-
+	
 }
 
 void Sandbox::shutdown()
@@ -22,10 +22,10 @@ void Sandbox::shutdown()
 
 void Sandbox::update()
 {
-	if (getKeyDown(NP_ESCAPE))
-	{
+	if (input.getKeyPressed(NP_KEY_ESCAPE))
 		stop();
-	}
+	if (input.getKeyPressed(NP_KEY_F3))
+		_showDebugInfo = !_showDebugInfo;
 }
 
 void Sandbox::draw()
