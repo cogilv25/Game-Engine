@@ -1,0 +1,11 @@
+*.[oa]
+*~
+*/bin/*
+*/bin-int/*
+/bin/*
+/bin-int/*
+*.tlog
+*.sln
+*.vcxproj
+*/imgui.ini
+*.pdn
